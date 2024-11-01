@@ -9,17 +9,20 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     const token = useSelector((state) => state.token);
 
     const getPosts = async () => {
-        const response = await fetch('http://localhost:5000/posts', {
-            method: 'GET',
-            headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await fetch(
+            'https://mern-social-media-server-2mmb.onrender.com/posts',
+            {
+                method: 'GET',
+                headers: { Authorization: `Bearer ${token}` },
+            }
+        );
         const data = await response.json();
         dispatch(setPosts({ posts: data }));
     };
 
     const getUserPosts = async () => {
         const response = await fetch(
-            `http://localhost:5000/posts/${userId}/posts`,
+            `https://mern-social-media-server-2mmb.onrender.com/posts/${userId}/posts`,
             {
                 method: 'GET',
                 headers: { Authorization: `Bearer ${token}` },
